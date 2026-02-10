@@ -1,4 +1,4 @@
-POST http://localhost:4000/captain/create
+POST http://localhost:4000/captain/register
 Content-Type: application/json
 
 {
@@ -9,4 +9,14 @@ Content-Type: application/json
   "plate": "BA-2-PA-1234",
   "capacity": 4,
   "vehicleType": "car"
+}
+
+
+###
+POST http://localhost:4000/captain/login
+Content-Type: application/json
+
+{
+  "email": "ram@gmail.com",
+  "password": "securePassword123"
 }

@@ -34,13 +34,33 @@ exports.createCaptain = async (req, res) => {
       },
     });
 
-    const token = await jwt.sign({ id: req.params.id }, secret_key, {
-      expiresIn: "24h",
-    });
     res
       .status(201)
       .json({ message: "captain created successfully ", captain, token });
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+exports.login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const captain = await Captain.findOne({ email });
+    if (!captain) return res.json({ message: "Invalid credentials " });
+    const isCompare = await bcrypt.compare(password, captain.password);
+    if (!isCompare) return res.json({ message: "Invalid credentials " });
+
+    const token = await jwt.sign({ id: req.params.id }, secret_key, {
+      expiresIn: "24h",
+    });
+    res.status(200).json({
+      message: "Captain login successfully",
+      captain,
+      token,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
   }
 };

@@ -1,7 +1,8 @@
 const { Router } = require("express");
-const { createCaptain } = require("../controllers/captain.controller");
+const { createCaptain, login } = require("../controllers/captain.controller");
 
 const captainRouter = Router();
-captainRouter.post("/create", createCaptain);
+captainRouter.post("/register", createCaptain);
+captainRouter.post("/login", login);
 
 module.exports = captainRouter;
