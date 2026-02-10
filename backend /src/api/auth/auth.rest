@@ -1,0 +1,17 @@
+POST http://localhost:4000/user/register
+Content-Type: application/json
+
+{
+  "fullname" : "Ram bahadur neupane",
+  "email" : "rambahadur@gmail.com",
+  "password" : "rambahadur@123"
+}
+
+###
+POST http://localhost:4000/user/login
+Content-Type: application/json
+
+{
+  "email" : "rambahadur@gmail.com",
+  "password" : "rambahadur@123"
+}
